@@ -1,0 +1,11 @@
+.env
+.env.*
+!.env.example
+bin/
+data/
+coverage.out
+*.log
+*.pem
+*.key
+node_modules/
+deploy/

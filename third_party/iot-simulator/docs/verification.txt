@@ -1,0 +1,79 @@
+Verificações locais — 2026-10-28 UTC / 2026-10-27 America/Sao_Paulo
+Ambiente Linux amd64; nenhuma conexão ao EMQX remoto.
+
+$ go version
+go version go1.25.3 linux/amd64
+Exit code: 0
+
+$ go mod tidy
+Exit code: 0
+
+$ go test -count=1 ./...
+?   	github.com/woicie/iot-simulator/cmd/tcc-simulator	[no test files]
+ok  	github.com/woicie/iot-simulator/internal/cli	0.005s
+ok  	github.com/woicie/iot-simulator/internal/device	0.002s
+?   	github.com/woicie/iot-simulator/internal/identity	[no test files]
+ok  	github.com/woicie/iot-simulator/internal/mqtt	0.003s
+ok  	github.com/woicie/iot-simulator/internal/telemetry	0.017s
+ok  	github.com/woicie/iot-simulator/pkg/config	0.007s
+ok  	github.com/woicie/iot-simulator/pkg/runner	0.087s
+Exit code: 0
+
+$ go test -count=1 -race ./...
+?   	github.com/woicie/iot-simulator/cmd/tcc-simulator	[no test files]
+ok  	github.com/woicie/iot-simulator/internal/cli	1.013s
+ok  	github.com/woicie/iot-simulator/internal/device	1.011s
+?   	github.com/woicie/iot-simulator/internal/identity	[no test files]
+ok  	github.com/woicie/iot-simulator/internal/mqtt	1.012s
+ok  	github.com/woicie/iot-simulator/internal/telemetry	1.123s
+ok  	github.com/woicie/iot-simulator/pkg/config	1.044s
+ok  	github.com/woicie/iot-simulator/pkg/runner	1.100s
+Exit code: 0
+
+$ go vet ./...
+Exit code: 0
+
+$ go build ./cmd/tcc-simulator
+Exit code: 0
+
+$ CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -trimpath -ldflags=-s -w -o dist/tcc-simulator-linux-amd64 ./cmd/tcc-simulator
+Exit code: 0
+
+$ CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build -trimpath -ldflags=-s -w -o dist/tcc-simulator-windows-amd64.exe ./cmd/tcc-simulator
+Exit code: 0
+
+$ ./dist/tcc-simulator-linux-amd64 --version
+tcc-simulator 1.0.0
+Exit code: 0
+
+$ ./dist/tcc-simulator-linux-amd64 --help
+Uso: tcc-simulator [run] --config config.yaml [opções]
+Sem run: modo contínuo. Com run: execução finita.
+Variáveis ${VAR} são resolvidas pelo ambiente; .env não é carregado automaticamente.
+  -config string
+    	arquivo YAML (default "config.yaml")
+  -devices string
+    	IDs separados por vírgula; omitido = todos
+  -grace-period duration
+    	tempo adicional para comandos após telemetria (padrão YAML: 2s)
+  -help
+    	exibe ajuda
+  -interval duration
+    	sobrescreve intervalo por dispositivo, ex.: 1s
+  -messages int
+    	tentativas de telemetria por dispositivo (somente run; padrão 20)
+  -output-json string
+    	caminho do relatório JSON final
+  -qos int
+    	sobrescreve QoS de telemetria: 0, 1 ou 2 (default -1)
+  -timeout duration
+    	limite total da execução; 0 = sem limite
+  -version
+    	exibe versão
+Exit code: 0
+
+O binário Windows foi cross-compilado e identificado como PE32+ x86-64; não houve execução nativa em Windows.
+O binário Linux foi compilado e executado neste ambiente.
+Integração real local com Mosquitto/TLS: ver integration-verification.txt.
+
+API pública e exemplo de integração: compilados a partir de outro módulo Go temporário, com replace local; go mod tidy e go test ./... retornaram código 0. Nenhum backend HTTP foi implementado.

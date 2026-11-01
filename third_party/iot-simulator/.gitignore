@@ -1,0 +1,18 @@
+# Credenciais e configurações locais
+.env
+.env.*
+!.env.example
+config.yaml
+config.local.yaml
+*.pem
+*.key
+# Resultados e compilação
+/results*.json
+/results/
+/tcc-simulator
+/tcc-simulator.exe
+/dist/*
+coverage.out
+*.test
+*.log
+.DS_Store

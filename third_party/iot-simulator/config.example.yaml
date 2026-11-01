@@ -1,0 +1,32 @@
+# Copie para config.yaml. As senhas vêm do ambiente, não deste arquivo.
+broker: "mqtts://broker.woicie.com.br:8883"
+mqtt_version: "5.0"
+qos: 1
+response_qos: 1
+interval: 5s
+connect_timeout: 20s       # limite inicial para conexão + assinatura
+operation_timeout: 10s    # tentativa de conexão, publicação ou assinatura
+shutdown_timeout: 5s
+reconnect_max: 30s
+grace_period: 2s
+# seed: 42               # reproduz valores dos sensores, não UUIDs/timestamps
+
+devices:
+  - id: dev-001
+    client_id: dev-001
+    username: dev-001
+    password: "${DEV_001_PASSWORD}"
+    qos: 1
+    interval: 5s
+    telemetry:
+      temperature_c: {min: 20, max: 30}
+      humidity_pct: {min: 40, max: 75}
+  - id: dev-002
+    client_id: dev-002
+    username: dev-002
+    password: "${DEV_002_PASSWORD}"
+    qos: 1
+    interval: 5s
+    telemetry:
+      temperature_c: {min: 21, max: 32}
+      humidity_pct: {min: 45, max: 80}

@@ -1,0 +1,40 @@
+=== RUN   TestBackoff
+--- PASS: TestBackoff (0.00s)
+=== RUN   TestForbiddenTopicBeforeConnection
+--- PASS: TestForbiddenTopicBeforeConnection (0.00s)
+=== RUN   TestWaitReadyCancellation
+--- PASS: TestWaitReadyCancellation (0.00s)
+=== RUN   TestIntegrationTLSMQTT5
+=== RUN   TestIntegrationTLSMQTT5/qos0
+=== RUN   TestIntegrationTLSMQTT5/qos1
+=== RUN   TestIntegrationTLSMQTT5/qos2
+=== RUN   TestIntegrationTLSMQTT5/cli-finite
+    integration_test.go:250: Real CLI output against isolated local TLS broker:
+        2026-10-28T02:01:59Z [runner] execução iniciada
+        2026-10-28T02:01:59Z [dev-001] conectado ao broker
+        2026-10-28T02:01:59Z [dev-002] conectado ao broker
+        2026-10-28T02:01:59Z [dev-002] inscrito em commands
+        2026-10-28T02:01:59Z [dev-001] inscrito em commands
+        2026-10-28T02:01:59Z [dev-001] telemetry -> temperature_c=25.07 humidity_pct=59.06
+        2026-10-28T02:01:59Z [dev-002] telemetry -> temperature_c=26.01 humidity_pct=62.33
+        2026-10-28T02:01:59Z [dev-001] telemetry -> temperature_c=25.07 humidity_pct=59.97
+        2026-10-28T02:01:59Z [dev-002] telemetry -> temperature_c=25.79 humidity_pct=61.80
+        2026-10-28T02:01:59Z [runner] completed
+        Execução d6433e75-b55a-45fd-b850-8f4ac4a99371: completed
+        [dev-001] tentativas=2 concluídas=2 broker_ack=2 falhas=0 comandos=0 respostas=0
+        [dev-002] tentativas=2 concluídas=2 broker_ack=2 falhas=0 comandos=0 respostas=0
+        Publicação/ACK MQTT não comprova entrega ao consumidor. Esta execução é funcional e independente do benchmark.
+        Relatório: /tmp/TestIntegrationTLSMQTT5253972448/001/cli-result.json
+=== RUN   TestIntegrationTLSMQTT5/invalid-password
+=== RUN   TestIntegrationTLSMQTT5/hostname-validation
+=== RUN   TestIntegrationTLSMQTT5/reconnect-and-resubscribe
+--- PASS: TestIntegrationTLSMQTT5 (3.47s)
+    --- PASS: TestIntegrationTLSMQTT5/qos0 (0.41s)
+    --- PASS: TestIntegrationTLSMQTT5/qos1 (0.41s)
+    --- PASS: TestIntegrationTLSMQTT5/qos2 (0.41s)
+    --- PASS: TestIntegrationTLSMQTT5/cli-finite (0.40s)
+    --- PASS: TestIntegrationTLSMQTT5/invalid-password (0.60s)
+    --- PASS: TestIntegrationTLSMQTT5/hostname-validation (0.00s)
+    --- PASS: TestIntegrationTLSMQTT5/reconnect-and-resubscribe (1.10s)
+PASS
+ok  	github.com/woicie/iot-simulator/internal/mqtt	4.479s
